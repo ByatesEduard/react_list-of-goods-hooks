@@ -22,7 +22,6 @@ export const App: React.FC = () => {
   const [isReversed, setIsReversed] = useState<boolean>(false);
   const [sortType, setSortType] = useState<SortMethod>(null); // alpha / length / null
 
-
   const sortAlphabetically = () => {
     setGoods(prevGoods => [...prevGoods].sort((a, b) => a.localeCompare(b)));
     setIsReversed(false);
@@ -54,7 +53,6 @@ export const App: React.FC = () => {
           type="button"
           className={`button is-info ${sortType === 'alpha' && !isReversed ? '' : 'is-light'}`}
           onClick={sortAlphabetically}
-          
         >
           Sort alphabetically
         </button>
@@ -84,7 +82,6 @@ export const App: React.FC = () => {
         </button>
       </div>
 
-      <ul>
         <ul>
           {goods.map(good => (
             <li key={good} data-cy="Good">
@@ -92,7 +89,6 @@ export const App: React.FC = () => {
             </li>
           ))}
         </ul>
-      </ul>
     </div>
   );
 };
