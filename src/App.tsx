@@ -72,7 +72,8 @@ export const App: React.FC = () => {
         >
           Reverse
         </button>
-
+         
+      {sortType !== null &&(
         <button
           type="button"
           className="button is-danger is-light"
@@ -80,15 +81,16 @@ export const App: React.FC = () => {
         >
           Reset
         </button>
+        )}
       </div>
 
-        <ul>
-          {goods.map(good => (
-            <li key={good} data-cy="Good">
-              {good}
-            </li>
-          ))}
-        </ul>
+      <ul>
+        {goods.map(good => (
+          <li key={good} data-cy="Good">
+            {good}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
