@@ -15,35 +15,39 @@ export const goodsFromServer = [
   'Garlic',
 ];
 
-type SortMethod = 'alpha' | 'length' | null;
+enum  SortType {
+ Aplha = 'alpha',
+ Length = 'length',
+ Null = 'none',
+}
 
 export const App: React.FC = () => {
   const [goods, setGoods] = useState<string[]>(goodsFromServer);
   const [isReversed, setIsReversed] = useState<boolean>(false);
-  const [sortType, setSortType] = useState<SortMethod>(null); // alpha / length / null
+  const [sortType, setSortType] = useState<SortType>(SortType.Null); // alpha / length / null
 
   const sortAlphabetically = () => {
     setGoods(prevGoods => [...prevGoods].sort((a, b) => a.localeCompare(b)));
     setIsReversed(false);
-    setSortType('alpha');
+    setSortType(SortType.Aplha);
   };
 
   const sortByLength = () => {
     setGoods(prevGoods => [...prevGoods].sort((a, b) => a.length - b.length));
     setIsReversed(false);
-    setSortType('length');
+    setSortType(SortType.Length);
   };
 
   const reversedGoods = () => {
     setGoods(prevGoods => [...prevGoods].reverse());
     setIsReversed(prev => !prev);
-    setSortType(null);
+    setSortType(SortType.Null);
   };
 
   const resetGoods = () => {
     setGoods(goodsFromServer);
     setIsReversed(false);
-    setSortType(null);
+    setSortType(SortType.Null);
   };
 
   return (
@@ -72,15 +76,15 @@ export const App: React.FC = () => {
         >
           Reverse
         </button>
-         
-      {sortType !== null &&(
-        <button
-          type="button"
-          className="button is-danger is-light"
-          onClick={resetGoods}
-        >
-          Reset
-        </button>
+
+        {sortType !== null && (
+          <button
+            type="button"
+            className="button is-danger is-light"
+            onClick={resetGoods}
+          >
+            Reset
+          </button>
         )}
       </div>
 
